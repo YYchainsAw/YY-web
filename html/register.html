@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+</head>
+<body>
+
+
+<div id="web">
+    用户名：<input type="text" v-model="inputUsername"><br>
+    设置密码：<input type="text" v-model="inputPassword"><br>
+    确认密码：<input type="text" v-model="inputPassword_"><br>
+    请输入验证码：<input type="text" v-model="inputTest">
+    <img id="checkCodeImg" src="http://localhost:8080/ZongHeWeb-test/user/checkCodeServlet" alt="生成中...">
+    <a href="#" id="checkchange">看不清？</a>
+    <div>${register_msg}</div><br>
+
+    <button type="submit" @click="_register">注册</button>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script src="../js/axios-0.18.0.js"></script>
+
+<script>
+  new Vue({
+    el: '#web',
+
+    mounted(){
+
+    },
+
+    methods:{
+        _register(){
+            var _this = this;
+
+            var json = {username:this.inputUsername,password:this.inputPassword,checkCode:this.inputTest};
+
+            if(this.inputPassword === this._inputPassword){
+                axios({
+                    url:'http://localhost:8080/ZongHeWeb-test/user/registerServlet',
+                    method:'post',
+                    data:json,
+                }).then(function(res){
+                    if(res.data==='success'){
+                        alert("注册成功！");
+                    }else{
+                        alert("注册失败");
+                    }
+                })
+            }else {
+                alert("两次密码不相同！");
+            }
+        }
+    },
+
+    data(){
+      return {
+        inputUsername:'',
+        inputPassword:'',
+        inputPassword_:'',
+        inputTest:''
+      }
+    }
+  })
+</script>
+<script>
+    document.getElementById('checkchange').onclick = function(){
+        document.getElementById('checkCodeImg').src = "http://localhost:8080/ZongHeWeb-test/user/checkCodeServlet?"+new Date().getMilliseconds();
+    }
+</script>
+
+</body>
+</html>

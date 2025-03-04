@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YY-Web</title>
+    <style>
+
+
+    </style>
+</head>
+<body>
+
+<div id="web">
+    用户名：<input type="text" v-model="account"><br>
+    密码：<input type="text" v-model="password"><br>
+    <button type="submit" @click="login">登录</button>
+    <a HREF="register.html">没有账户？</a>
+
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script src="../element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="../element-ui/lib/theme-chalk/index.css">
+<script src="../js/axios-0.18.0.js"></script>
+
+<script>
+    new Vue({
+        el: '#web',
+
+        mounted() {
+
+        },
+
+        methods: {
+            login(){
+                var _this = this;
+
+                axios({
+                    method: 'POST',
+                    url: 'http://localhost:8080/ZongHeWeb-test/user/login',
+                    data: {account: _this.account,password: _this.password}
+                }).then(res => {
+                    if(res.data=='success'){
+
+                    }else if(res.data=='fail'){
+                        alert("用户名或密码错误！");
+                    }
+                })
+            },
+
+        },
+
+        data(){
+            return{
+                account:'',
+                password:'',
+            }
+        },
+    })
+
+</script>
+
+</body>
+</html>
