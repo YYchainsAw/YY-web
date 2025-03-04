@@ -1,0 +1,13 @@
+com\YYchainsAw\mapper\BrandMapper.class
+com\YYchainsAw\pojo\User.class
+com\YYchainsAw\service\UserService.class
+com\YYchainsAw\web\servlet\UserServlet.class
+com\YYchainsAw\pojo\Brand.class
+com\YYchainsAw\service\impl\BrandServiceImpl.class
+com\YYchainsAw\mapper\UserMapper.class
+com\YYchainsAw\service\BrandService.class
+com\YYchainsAw\service\impl\UserServiceImpl.class
+com\YYchainsAw\util\SqlSessionFactoryUtils.class
+com\YYchainsAw\web\servlet\BrandServlet.class
+com\YYchainsAw\util\CheckCodeUtil.class
+com\YYchainsAw\web\servlet\BaseServlet.class
